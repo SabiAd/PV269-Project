@@ -34,6 +34,7 @@ The workflow produces the final identity matrices and visualizations for both ch
   * p_arm_heatmap: Final heatmap image for P-arm subtelomeres.
   * q_arm_heatmap: Final heatmap image for Q-arm subtelomeres
 
+![Subtelomeric heatmap](test_data/heatmap.png)
 
 
 5. Running the workflow
