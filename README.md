@@ -37,8 +37,20 @@ The workflow produces the final identity matrices and visualizations for both ch
 ![Subtelomeric heatmap](test_data/heatmap.png)
 
 
+
 5. Running the workflow
 The pipeline can be executed using any WDL-compatible workflow engine, such as Cromwell:
 
-```java -jar cromwell.jar run subtelomeric_project.wdl -i inputs.json```
+```
+java -jar cromwell.jar run [workflow_script.wdl] -i [inputs.json]
+```
+
+### Testing with example data
+To quickly test the workflow, you can use the provided example dataset in the `test_data/` folder. This allows you to verify that the pipeline runs correctly without using the full genome reference.
+
+Example command:
+
+```
+java -jar cromwell.jar run subtelomeric_project.wdl -i test_data/inputs.json
+```
 
