@@ -1,6 +1,6 @@
 {
-  "subtelomeric_project.bed_file": "/Users/sabinaadamova/Desktop/project/subtelomere_project/test_data/test_telomere.bed",
-  "subtelomeric_project.pad": 200000,
-  "subtelomeric_project.fasta_ref": "/Users/sabinaadamova/Desktop/project/subtelomere_project/test_data/test.fa",
-  "subtelomeric_project.script": "/Users/sabinaadamova/Desktop/project/subtelomere_project/scripts/plot_identity_heatmap.py"
+  "subtelomeric_project.bed_file": "test_data/test_telomere.bed",
+  "subtelomeric_project.pad": 100000,
+  "subtelomeric_project.fasta_ref": "test_data/test.fa",
+  "subtelomeric_project.script": "scripts/plot_identity_heatmap.py"
 }
