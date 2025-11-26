@@ -1,0 +1,38 @@
+#!/bin/bash
+
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution
+tmpDir=$(mkdir -p "/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/tmp.24596640" && echo "/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/tmp.24596640")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution
+
+)
+out1f05a7e4="${tmpDir}/out.$$" err1f05a7e4="${tmpDir}/err.$$"
+mkfifo "$out1f05a7e4" "$err1f05a7e4"
+trap 'rm "$out1f05a7e4" "$err1f05a7e4"' EXIT
+touch '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/stdout' '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/stderr'
+tee '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/stdout' < "$out1f05a7e4" &
+tee '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/stderr' < "$err1f05a7e4" >&2 &
+(
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution
+
+
+pip install --no-cache-dir pandas matplotlib seaborn
+python3 /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/inputs/-911136665/plot_identity_heatmap.py /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/inputs/1959514501/pairwise_identity.txt heatmap.png
+)  > "$out1f05a7e4" 2> "$err1f05a7e4"
+echo $? > /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution
+sync
+
+
+)
+mv /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/rc.tmp /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-plot_q_arm/execution/rc

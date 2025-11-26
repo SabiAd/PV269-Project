@@ -1,0 +1,3 @@
+#!/bin/bash
+'/bin/bash' '/Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/rc &
+echo $!

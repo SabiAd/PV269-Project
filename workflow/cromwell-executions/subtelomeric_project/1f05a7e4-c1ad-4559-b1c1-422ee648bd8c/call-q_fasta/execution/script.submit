@@ -1,0 +1,20 @@
+#!/bin/bash
+# make sure there is no preexisting Docker CID file
+rm -f /Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+docker run \
+  --cidfile /Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/docker_cid \
+  -i \
+   \
+  --entrypoint /bin/bash \
+  -v /Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta:/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta:delegated \
+  danhumassmed/samtools-bedtools@sha256:51661e6f14db92fe5103674587c35696a16bb1bbe5091571b534f2694ed492e5 /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/script
+
+# get the return code (working even if the container was detached)
+rc=$(docker wait `cat /Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/docker_cid`)
+
+# remove the container after waiting
+docker rm `cat /Users/sabinaadamova/Desktop/project/subtelomere_project/workflow/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_fasta/execution/docker_cid`
+
+# return exit code
+exit $rc

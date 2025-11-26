@@ -1,0 +1,38 @@
+#!/bin/bash
+
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution
+tmpDir=$(mkdir -p "/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/tmp.1115fa78" && echo "/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/tmp.1115fa78")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution
+
+)
+out1f05a7e4="${tmpDir}/out.$$" err1f05a7e4="${tmpDir}/err.$$"
+mkfifo "$out1f05a7e4" "$err1f05a7e4"
+trap 'rm "$out1f05a7e4" "$err1f05a7e4"' EXIT
+touch '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/stdout' '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/stderr'
+tee '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/stdout' < "$out1f05a7e4" &
+tee '/cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/stderr' < "$err1f05a7e4" >&2 &
+(
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution
+
+
+set -euo pipefail
+mashmap -r /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/inputs/1432698291/regions.fa -q /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/inputs/1432698291/regions.fa -t 4 --perc_identity=70 -o alignment.paf
+)  > "$out1f05a7e4" 2> "$err1f05a7e4"
+echo $? > /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution
+sync
+
+
+)
+mv /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/rc.tmp /cromwell-executions/subtelomeric_project/1f05a7e4-c1ad-4559-b1c1-422ee648bd8c/call-q_arm_align/execution/rc
