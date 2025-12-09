@@ -8,14 +8,12 @@ task pad_bed {
 
   command <<<
     set -euo pipefail
-    
     awk -v pad=~{pad} 'BEGIN{OFS="\t"} \
     {
       chr=$1
       start=$2
       end=$3
-      
-      
+
       if (start <= 1000) {
         new_start = end
         new_end = end + pad
@@ -26,7 +24,6 @@ task pad_bed {
         new_start = (raw_start > 0) ? raw_start : 0 
         new_end = start
       }
-      
       print chr, new_start, new_end
     }' ~{bed_file} > padded.bed
   >>>
