@@ -6,10 +6,8 @@ task split_bed {
   }
 
   command <<<
-    set -euo pipefail
-    
-    touch p_arm_telomeric.bed q_arm_telomeric.bed
-    
+    set -euo pipefail    
+    touch p_arm_telomeric.bed q_arm_telomeric.bed   
     awk 'BEGIN{OFS="\t"} \
           {if(!($1 in s)){s[$1]=$2; e[$1]=$3; print $1"\t"$2"\t"$3 >> "p_arm_telomeric.bed"} \
            else{print $1"\t"$2"\t"$3 >> "q_arm_telomeric.bed"}}' ~{bed_file}
