@@ -8,7 +8,6 @@ task bed_to_fasta {
 
   command <<<
     set -euo pipefail
-    
     awk 'BEGIN{OFS="\t"} {
       start=$2
       end=$3
@@ -19,7 +18,6 @@ task bed_to_fasta {
       }
       print $1, start, end
     }' ~{bed_file} > normalized.bed
-
     bedtools getfasta -fi ~{fasta_ref} -bed normalized.bed -fo regions.fa
   >>>
 
