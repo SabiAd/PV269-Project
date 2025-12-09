@@ -23,7 +23,6 @@ task pad_bed {
       
       else {
         raw_start = start - pad
-        # Zabrání záporným souřadnicím
         new_start = (raw_start > 0) ? raw_start : 0 
         new_end = start
       }
