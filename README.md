@@ -7,7 +7,7 @@ Subtelomeres are regions immediately adjacent to the telomeric repeats, forming 
 
 ## WDL Workflow: ```workflow/subtelomeric_project.wdl```
 1. Workflow structure
-The pipeline processes P-arm (start/short) and Q-arm (end/long) subtelomeres separately, but with the same sequence of steps, creating with following tasks:
+The pipeline processes p-arm (short/start) and q-arm (long/end) subtelomeres separately, but with the same sequence of steps, creating with following tasks:
 
 | Step                     | WDL task                          | Description                                                                                                                                                   |
 |---------------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -17,7 +17,7 @@ The pipeline processes P-arm (start/short) and Q-arm (end/long) subtelomeres sep
 | Calculation of identity   | ```pairwise_identity.wdl```       | Processes the Mashmap output (.paf file) to calculate a pairwise sequence identity matrix for the subtelomeric regions.                                     |
 | Visualization             | ```plot_heatmap.wdl```            | Generates a heatmap visualizing the pairwise identity matrix and sequence similarity between subtelomeric regions.                                        |
 
-3. Input parameters
+2. Input parameters
 
   | Parameter  | Type | Description |
 |------------|------|-------------|
@@ -26,19 +26,19 @@ The pipeline processes P-arm (start/short) and Q-arm (end/long) subtelomeres sep
 | fasta_ref  | File | The reference genome in FASTA format. |
 | script     | File | The Python script used for generating the heatmap visualization. |
 
-4. Outputs
+3. Outputs
    
 The workflow produces the final identity matrices and visualizations for both chromosomal arms:
-  * p_arm_identity_matrix: Identity matrix for P-arms.
-  * q_arm_identity_matrix: Identity matrix for Q-arms.
-  * p_arm_heatmap: Final heatmap image for P-arm subtelomeres.
-  * q_arm_heatmap: Final heatmap image for Q-arm subtelomeres
+  * p_arm_identity_matrix: Identity matrix for p-arms.
+  * q_arm_identity_matrix: Identity matrix for q-arms.
+  * p_arm_heatmap: Final heatmap image for p-arm subtelomeres.
+  * q_arm_heatmap: Final heatmap image for q-arm subtelomeres
 
 ![Subtelomeric heatmap](test_data/heatmap.png)
 
 
 
-5. Running the workflow
+4. Running the workflow
 The pipeline can be executed using any WDL-compatible workflow engine, such as Cromwell:
 
 ```
