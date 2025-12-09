@@ -7,7 +7,6 @@ task pairwise_identity {
 
   command <<<
     set -euo pipefail
-
     awk 'BEGIN{OFS="\t"} 
     {
       # $1 = query chrom
